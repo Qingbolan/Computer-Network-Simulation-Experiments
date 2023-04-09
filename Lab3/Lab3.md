@@ -127,10 +127,18 @@ ISP-Router(config-if)#pppoe enable group MyGroup
 
 Reference 5.Q7~11
 
+![image-20230409215608427](assets/image-20230409215608427.png)
+
 
 #### 6. test the connectivity of the DSL connection.
 
- 
+- From **DSL-PC** to **Internet-PC**
+
+  ![image-20230409215740843](assets/image-20230409215740843.png)
+
+
+
+
 
 ## **Part 2 – Circuit-switched Network.**
 
@@ -138,18 +146,34 @@ Reference 5.Q7~11
 > 2.1 Dialup-PC -> Internet-PC using analog dialup
 > 2.2 Dialup-PC -> Teacher-PC/Student-PC/Servers using analog dialup
 
-
-### Step 3 – Analog dialup
+### ==Step 3 – Analog dialup==
 
 #### 7. configure analog dialup on the provider’s site (e.g. ISP-Router)
 
 Reference 6.Q1~3
 
+![image-20230409221436370](assets/image-20230409221436370.png)
 
+```bash
+ISP-Router(config)#username Dialup-User password Hello
 
+ISP-Router(config)#ip dhcp excluded-address 202.202.202.1 202.202.202.100
+ISP-Router(config)#ip dhcp excluded-address 202.202.202.200 202.202.202.255
+ISP-Router(config)#ip dhcp pool Dialup-DHCPPool
+ISP-Router(dhcp-config)#network 202.202.202.0 255.255.255.0
+ISP-Router(dhcp-config)#default-router 202.202.202.1
+```
 
 #### 8. configure analog dialup on the campus’s site (e.g. Gateway-Router1)
+
 Reference 6.Q10~12
+
+![image-20230409221352352](assets/image-20230409221352352.png)
+
+```bash
+```
+
+
 
 
 #### 9. configure analog dialup on the subscriber’ site (e.g. Dialup-PC)
