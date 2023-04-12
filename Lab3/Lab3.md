@@ -171,6 +171,15 @@ Reference 6.Q10~12
 ![image-20230409221352352](assets/image-20230409221352352.png)
 
 ```bash
+Gateway-Router1(config)#username Campus-User password Hello
+Gateway-Router1(config)#ip dhcp pool Dialup-DHCPPool
+Gateway-Router1(dhcp-config)#network 172.16.1.0 255.255.255.0
+Gateway-Router1(dhcp-config)#default-router 172.16.1.1
+Gateway-Router1(dhcp-config)#ip dhcp excluded-address 172.16.1.1 172.16.1.100
+Gateway-Router1(config)#ip dhcp excluded-address 172.16.1.100 172.16.1.255
+Gateway-Router1(config)#ip dhcp pool Dialup-DHCPPool
+Gateway-Router1(dhcp-config)#network 172.16.1.0 255.255.255.0
+Gateway-Router1(dhcp-config)#default-router 172.16.1.1
 ```
 
 
@@ -179,6 +188,35 @@ Reference 6.Q10~12
 #### 9. configure analog dialup on the subscriber’ site (e.g. Dialup-PC)
 Reference 6.Q5~9; Q14~18
 
+![image-20230412135818679](assets/image-20230412135818679.png)
+
+![image-20230412150938144](assets/image-20230412150938144.png)
+
+- ISP-Rout
+
+```bash
+ISP-Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+FastEthernet0/0        1.1.1.1         YES NVRAM  up                    up 
+FastEthernet0/1        unassigned      YES NVRAM  administratively down down 
+Modem0/0/0             202.202.202.1   YES unset  up                    up 
+Modem0/0/1             unassigned      YES unset  down                  down 
+FastEthernet1/0        201.201.201.1   YES manual up                    up 
+Serial1/0/0            unassigned      YES NVRAM  administratively down down 
+Serial1/0/1            unassigned      YES NVRAM  administratively down down 
+Virtual-Template1      201.201.201.1   YES unset  down                  down 
+Virtual-Access1        unassigned      YES unset  up                    up 
+Virtual-Access2        unassigned      YES unset  down                  down 
+Vlan1                  unassigned      YES unset  administratively down down
+```
+
+> ==Modem0/0/0             202.202.202.1   YES unset  up                    up==
+
+- Dialup-PC
+
+  ![image-20230412151214647](assets/image-20230412151214647.png)
+
+  ![image-20230412151315919](assets/image-20230412151315919.png)
 
 #### 10. test the connectivity of the analog dialup connection.
 
